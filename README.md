@@ -1,4 +1,5 @@
 # Invuecer
+An invoice application usign firebase and Vuej.js
 
 ## Project setup
 ```
