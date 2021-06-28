@@ -1,4 +1,7 @@
 # Invuecer
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d56a8101-8960-4c61-b51e-d64bce667985/deploy-status)](https://app.netlify.com/sites/invuecer/deploys)
+
 An invoice application usign firebase and Vuej.js
 
 ## Project setup
