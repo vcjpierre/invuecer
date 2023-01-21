@@ -318,7 +318,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 .invoice-wrap {
   position: fixed;
   top: 0;
@@ -326,133 +326,165 @@ export default {
   width: 100%;
   height: 100vh;
   overflow: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  @media (min-width: 900px) {
+}
+
+.invoice-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .invoice-wrap {
     left: 90px;
   }
-  .invoice-content {
-    position: relative;
-    padding: 56px;
-    max-width: 700px;
-    width: 100%;
-    background-color: #141625;
-    color: #fff;
-    box-shadow: 10px 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    h1 {
-      margin-bottom: 48px;
-      color: #fff;
-    }
-    h3 {
-      margin-bottom: 16px;
-      font-size: 18px;
-      color: #777f98;
-    }
-    h4 {
-      color: #7c5dfa;
-      font-size: 12px;
-      margin-bottom: 24px;
-    }
-    // Bill To / Bill From
-    .bill-to,
-    .bill-from {
-      margin-bottom: 48px;
-      .location-details {
-        gap: 16px;
-        div {
-          flex: 1;
-        }
-      }
-    }
-    // Invoice Work
-    .invoice-work {
-      .payment {
-        gap: 24px;
-        div {
-          flex: 1;
-        }
-      }
-      .work-items {
-        .item-list {
-          width: 100%;
-          // Item Table Styling
-          .table-heading,
-          .table-items {
-            gap: 16px;
-            font-size: 12px;
-            .item-name {
-              flex-basis: 50%;
-            }
-            .qty {
-              flex-basis: 10%;
-            }
-            .price {
-              flex-basis: 20%;
-            }
-            .total {
-              flex-basis: 20%;
-              align-self: center;
-            }
-          }
-          .table-heading {
-            margin-bottom: 16px;
-            th {
-              text-align: left;
-            }
-          }
-          .table-items {
-            position: relative;
-            margin-bottom: 24px;
-            img {
-              position: absolute;
-              top: 15px;
-              right: 0;
-              width: 12px;
-              height: 16px;
-            }
-          }
-        }
-        .button {
-          color: #fff;
-          background-color: #252945;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          img {
-            margin-right: 4px;
-          }
-        }
-      }
-    }
-    .save {
-      margin-top: 60px;
-      div {
-        flex: 1;
-      }
-      .right {
-        justify-content: flex-end;
-      }
-    }
-  }
-  .input {
-    margin-bottom: 24px;
-  }
-  label {
-    font-size: 12px;
-    margin-bottom: 6px;
-  }
-  input,
-  select {
-    width: 100%;
-    background-color: #1e2139;
-    color: #fff;
-    border-radius: 4px;
-    padding: 12px 4px;
-    border: none;
-    &:focus {
-      outline: none;
-    }
-  }
+}
+
+.invoice-wrap .invoice-content {
+  position: relative;
+  padding: 56px;
+  max-width: 700px;
+  width: 100%;
+  background-color: #141625;
+  color: #fff;
+  box-shadow: 10px 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.invoice-wrap .invoice-content h1 {
+  margin-bottom: 48px;
+  color: #fff;
+}
+
+.invoice-wrap .invoice-content h3 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: #777f98;
+}
+
+.invoice-wrap .invoice-content h4 {
+  color: #7c5dfa;
+  font-size: 12px;
+  margin-bottom: 24px;
+}
+
+.invoice-wrap .invoice-content .bill-to,
+.invoice-wrap .invoice-content .bill-from {
+  margin-bottom: 48px;
+}
+
+.invoice-wrap .invoice-content .bill-to .location-details,
+.invoice-wrap .invoice-content .bill-from .location-details {
+  gap: 16px;
+}
+
+.invoice-wrap .invoice-content .bill-to .location-details div,
+.invoice-wrap .invoice-content .bill-from .location-details div {
+  flex: 1;
+}
+
+.invoice-wrap .invoice-content .invoice-work .payment {
+  gap: 24px;
+}
+
+.invoice-wrap .invoice-content .invoice-work .payment div {
+  flex: 1;
+}
+
+.invoice-wrap .invoice-content .invoice-work .work-items .item-list {
+  width: 100%;
+}
+
+.invoice-wrap .invoice-content .invoice-work .work-items .item-list .table-heading,
+.invoice-wrap .invoice-content .invoice-work .work-items .item-list .table-items {
+  gap: 16px;
+  font-size: 12px;
+}
+
+.invoice-wrap .invoice-content .invoice-work .work-items .item-list .table-heading .item-name,
+.invoice-wrap .invoice-content .invoice-work .work-items .item-list .table-items .item-name {
+  flex-basis: 50%;
+}
+
+.invoice-wrap .invoice-content .invoice-work .work-items .item-list .table-heading .qty,
+.invoice-wrap .invoice-content .invoice-work .work-items .item-list .table-items .qty {
+  flex-basis: 10%;
+}
+
+.invoice-wrap .invoice-content .invoice-work .work-items .item-list .table-heading .price,
+.invoice-wrap .invoice-content .invoice-work .work-items .item-list .table-items .price {
+  flex-basis: 20%;
+}
+
+.invoice-wrap .invoice-content .invoice-work .work-items .item-list .table-heading .total,
+.invoice-wrap .invoice-content .invoice-work .work-items .item-list .table-items .total {
+  flex-basis: 20%;
+  align-self: center;
+}
+
+.invoice-wrap .invoice-content .invoice-work .work-items .item-list .table-heading {
+  margin-bottom: 16px;
+}
+
+.invoice-wrap .invoice-content .invoice-work .work-items .item-list .table-heading th {
+  text-align: left;
+}
+
+.invoice-wrap .invoice-content .invoice-work .work-items .item-list .table-items {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.invoice-wrap .invoice-content .invoice-work .work-items .item-list .table-items img {
+  position: absolute;
+  top: 15px;
+  right: 0;
+  width: 12px;
+  height: 16px;
+}
+
+.invoice-wrap .invoice-content .invoice-work .work-items .button {
+  color: #fff;
+  background-color: #252945;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.invoice-wrap .invoice-content .invoice-work .work-items .button img {
+  margin-right: 4px;
+}
+
+.invoice-wrap .invoice-content .save {
+  margin-top: 60px;
+}
+
+.invoice-wrap .invoice-content .save div {
+  flex: 1;
+}
+
+.invoice-wrap .invoice-content .save .right {
+  justify-content: flex-end;
+}
+
+.invoice-wrap .input {
+  margin-bottom: 24px;
+}
+
+.invoice-wrap label {
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.invoice-wrap input,
+.invoice-wrap select {
+  width: 100%;
+  background-color: #1e2139;
+  color: #fff;
+  border-radius: 4px;
+  padding: 12px 4px;
+  border: none;
+}
+
+.invoice-wrap input:focus,
+.invoice-wrap select:focus {
+  outline: none;
 }
 </style>

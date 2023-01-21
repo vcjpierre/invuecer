@@ -29,7 +29,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 .invoice {
   text-decoration: none;
   cursor: pointer;
@@ -40,29 +40,35 @@ export default {
   padding: 28px 32px;
   background-color: #1e2139;
   align-items: center;
-  span {
-    font-size: 13px;
-  }
-  .left {
-    align-items: center;
-    flex-basis: 60%;
-    gap: 16px;
-    span {
-      flex: 1;
-    }
-    .tracking-number {
-      text-transform: uppercase;
-    }
-  }
-  .right {
-    gap: 16px;
-    flex-basis: 40%;
-    align-items: center;
-    .price {
-      flex: 1;
-      font-size: 16px;
-      font-weight: 600px;
-    }
-  }
+}
+
+.invoice span {
+  font-size: 13px;
+}
+
+.invoice .left {
+  align-items: center;
+  flex-basis: 60%;
+  gap: 16px;
+}
+
+.invoice .left span {
+  flex: 1;
+}
+
+.invoice .left .tracking-number {
+  text-transform: uppercase;
+}
+
+.invoice .right {
+  gap: 16px;
+  flex-basis: 40%;
+  align-items: center;
+}
+
+.invoice .right .price {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 600px;
 }
 </style>

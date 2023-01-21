@@ -10,7 +10,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="css">
 .loading {
   top: 0;
   left: 0;
@@ -22,21 +22,23 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  @keyframes spin {
-    to {
-      transform: rotateZ(360deg);
-    }
+}
+
+@keyframes spin {
+  to {
+    transform: rotateZ(360deg);
   }
-  span {
-    display: block;
-    width: 60px;
-    height: 60px;
-    margin: 0 auto;
-    border: 3px solid transparent;
-    border-top-color: #fff;
-    border-bottom-color: #fff;
-    border-radius: 50%;
-    animation: spin ease 1000ms infinite;
-  }
+}
+
+.loading span {
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  border: 3px solid transparent;
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+  border-radius: 50%;
+  animation: spin ease 1000ms infinite;
 }
 </style>

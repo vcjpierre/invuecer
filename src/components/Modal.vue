@@ -33,7 +33,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 .modal {
   z-index: 100;
   position: fixed;
@@ -41,21 +41,25 @@ export default {
   align-items: center;
   height: 100vh;
   width: 100%;
-  .modal-content {
-    border-radius: 20px;
-    padding: 48px 32px;
-    max-width: 450px;
-    background-color: #252945;
-    color: #fff;
-    p {
-      text-align: center;
-    }
-    .actions {
-      margin-top: 24px;
-      button {
-        flex: 1;
-      }
-    }
-  }
+}
+
+.modal .modal-content {
+  border-radius: 20px;
+  padding: 48px 32px;
+  max-width: 450px;
+  background-color: #252945;
+  color: #fff;
+}
+
+.modal .modal-content p {
+  text-align: center;
+}
+
+.modal .modal-content .actions {
+  margin-top: 24px;
+}
+
+.modal .modal-content .actions button {
+  flex: 1;
 }
 </style>

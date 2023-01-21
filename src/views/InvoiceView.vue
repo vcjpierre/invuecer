@@ -145,162 +145,190 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.invoice-view {
-  .nav-link {
-    margin-bottom: 32px;
-    align-items: center;
-    color: #fff;
-    font-size: 12px;
-    img {
-      margin-right: 16px;
-      width: 7px;
-      height: 10px;
-    }
-  }
-  .header,
-  .invoice-details {
-    background-color: #1e2139;
-    border-radius: 20px;
-  }
-  .header {
-    align-items: center;
-    padding: 24px 32px;
-    font-size: 12px;
-    .left {
-      align-items: center;
-      span {
-        color: #dfe3fa;
-        margin-right: 16px;
-      }
-    }
-    .right {
-      flex: 1;
-      justify-content: flex-end;
-      button {
-        color: #fff;
-      }
-    }
-  }
-  .invoice-details {
-    padding: 48px;
-    margin-top: 24px;
-    .top {
-      div {
-        color: #dfe3fa;
-        flex: 1;
-      }
-      .left {
-        font-size: 12px;
-        p:first-child {
-          font-size: 24px;
-          text-transform: uppercase;
-          color: #fff;
-          margin-bottom: 8px;
-        }
-        p:nth-child(2) {
-          font-size: 16px;
-        }
-        span {
-          color: #888eb0;
-        }
-      }
-      .right {
-        font-size: 12px;
-        align-items: flex-end;
-      }
-    }
-    .middle {
-      margin-top: 50px;
-      color: #dfe3fa;
-      gap: 16px;
-      h4 {
-        font-size: 12px;
-        font-weight: 400;
-        margin-bottom: 12px;
-      }
-      p {
-        font-size: 16px;
-      }
-      .bill,
-      .payment {
-        flex: 1;
-      }
-      .payment {
-        h4:nth-child(3) {
-          margin-top: 32px;
-        }
-        p {
-          font-weight: 600;
-        }
-      }
-      .bill {
-        p:nth-child(2) {
-          font-size: 16px;
-        }
-        p:nth-child(3) {
-          margin-top: auto;
-        }
-        p {
-          font-size: 12px;
-        }
-      }
-      .send-to {
-        flex: 2;
-      }
-    }
-    .bottom {
-      margin-top: 50px;
-      .billing-items {
-        padding: 32px;
-        border-radius: 20px 20px 0 0;
-        background-color: #252945;
-        .heading {
-          color: #dfe3fa;
-          font-size: 12px;
-          margin-bottom: 32px;
-          p:first-child {
-            flex: 3;
-            text-align: left;
-          }
-          p {
-            flex: 1;
-            text-align: right;
-          }
-        }
-        .item {
-          margin-bottom: 32px;
-          font-size: 13px;
-          color: #fff;
-          &:last-child {
-            margin-bottom: 0;
-          }
-          p:first-child {
-            flex: 3;
-            text-align: left;
-          }
-          p {
-            flex: 1;
-            text-align: right;
-          }
-        }
-      }
-      .total {
-        color: #fff;
-        padding: 32px;
-        background-color: rgba(12, 14, 22, 0.7);
-        align-items: center;
-        border-radius: 0 0 20px 20px;
-        p {
-          flex: 1;
-          font-size: 12px;
-        }
-        p:nth-child(2) {
-          font-size: 28px;
-          text-align: right;
-        }
-      }
-    }
-  }
+<style lang="css" scoped>
+.invoice-view .nav-link {
+  margin-bottom: 32px;
+  align-items: center;
+  color: #fff;
+  font-size: 12px;
+}
+
+.invoice-view .nav-link img {
+  margin-right: 16px;
+  width: 7px;
+  height: 10px;
+}
+
+.invoice-view .header,
+.invoice-view .invoice-details {
+  background-color: #1e2139;
+  border-radius: 20px;
+}
+
+.invoice-view .header {
+  align-items: center;
+  padding: 24px 32px;
+  font-size: 12px;
+}
+
+.invoice-view .header .left {
+  align-items: center;
+}
+
+.invoice-view .header .left span {
+  color: #dfe3fa;
+  margin-right: 16px;
+}
+
+.invoice-view .header .right {
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.invoice-view .header .right button {
+  color: #fff;
+}
+
+.invoice-view .invoice-details {
+  padding: 48px;
+  margin-top: 24px;
+}
+
+.invoice-view .invoice-details .top div {
+  color: #dfe3fa;
+  flex: 1;
+}
+
+.invoice-view .invoice-details .top .left {
+  font-size: 12px;
+}
+
+.invoice-view .invoice-details .top .left p:first-child {
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.invoice-view .invoice-details .top .left p:nth-child(2) {
+  font-size: 16px;
+}
+
+.invoice-view .invoice-details .top .left span {
+  color: #888eb0;
+}
+
+.invoice-view .invoice-details .top .right {
+  font-size: 12px;
+  align-items: flex-end;
+}
+
+.invoice-view .invoice-details .middle {
+  margin-top: 50px;
+  color: #dfe3fa;
+  gap: 16px;
+}
+
+.invoice-view .invoice-details .middle h4 {
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.invoice-view .invoice-details .middle p {
+  font-size: 16px;
+}
+
+.invoice-view .invoice-details .middle .bill,
+.invoice-view .invoice-details .middle .payment {
+  flex: 1;
+}
+
+.invoice-view .invoice-details .middle .payment h4:nth-child(3) {
+  margin-top: 32px;
+}
+
+.invoice-view .invoice-details .middle .payment p {
+  font-weight: 600;
+}
+
+.invoice-view .invoice-details .middle .bill p:nth-child(2) {
+  font-size: 16px;
+}
+
+.invoice-view .invoice-details .middle .bill p:nth-child(3) {
+  margin-top: auto;
+}
+
+.invoice-view .invoice-details .middle .bill p {
+  font-size: 12px;
+}
+
+.invoice-view .invoice-details .middle .send-to {
+  flex: 2;
+}
+
+.invoice-view .invoice-details .bottom {
+  margin-top: 50px;
+}
+
+.invoice-view .invoice-details .bottom .billing-items {
+  padding: 32px;
+  border-radius: 20px 20px 0 0;
+  background-color: #252945;
+}
+
+.invoice-view .invoice-details .bottom .billing-items .heading {
+  color: #dfe3fa;
+  font-size: 12px;
+  margin-bottom: 32px;
+}
+
+.invoice-view .invoice-details .bottom .billing-items .heading p:first-child {
+  flex: 3;
+  text-align: left;
+}
+
+.invoice-view .invoice-details .bottom .billing-items .heading p {
+  flex: 1;
+  text-align: right;
+}
+
+.invoice-view .invoice-details .bottom .billing-items .item {
+  margin-bottom: 32px;
+  font-size: 13px;
+  color: #fff;
+}
+
+.invoice-view .invoice-details .bottom .billing-items .item:last-child {
+  margin-bottom: 0;
+}
+
+.invoice-view .invoice-details .bottom .billing-items .item p:first-child {
+  flex: 3;
+  text-align: left;
+}
+
+.invoice-view .invoice-details .bottom .billing-items .item p {
+  flex: 1;
+  text-align: right;
+}
+
+.invoice-view .invoice-details .bottom .total {
+  color: #fff;
+  padding: 32px;
+  background-color: rgba(12, 14, 22, 0.7);
+  align-items: center;
+  border-radius: 0 0 20px 20px;
+}
+
+.invoice-view .invoice-details .bottom .total p {
+  flex: 1;
+  font-size: 12px;
+}
+
+.invoice-view .invoice-details .bottom .total p:nth-child(2) {
+  font-size: 28px;
+  text-align: right;
 }
 </style>
