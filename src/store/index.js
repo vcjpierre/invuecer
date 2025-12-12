@@ -128,7 +128,7 @@ export default createStore({
       commit("SET_USER", {
         uid: user.uid,
         email: null,
-        displayName: "Usuario Anónimo",
+        displayName: "Anonymous User",
       });
       commit("SET_USER_LOGGED_IN", true);
       return user;
@@ -184,30 +184,30 @@ export default createStore({
     },
     async DELETE_INVOICE({ commit, state }, docId) {
       if (!state.user || !state.user.uid) {
-        throw new Error("Usuario no autenticado");
+        throw new Error("User not authenticated");
       }
       const invoiceRef = db.collection("invoices").doc(docId);
       const invoiceDoc = await invoiceRef.get();
       if (!invoiceDoc.exists) {
-        throw new Error("Invoice no encontrado");
+        throw new Error("Invoice not found");
       }
       if (invoiceDoc.data().userId !== state.user.uid) {
-        throw new Error("No tienes permisos para eliminar este invoice");
+        throw new Error("You don't have permission to delete this invoice");
       }
       await invoiceRef.delete();
       commit("DELETE_INVOICE", docId);
     },
     async UPDATE_STATUS_TO_PAID({ commit, state }, docId) {
       if (!state.user || !state.user.uid) {
-        throw new Error("Usuario no autenticado");
+        throw new Error("User not authenticated");
       }
       const invoiceRef = db.collection("invoices").doc(docId);
       const invoiceDoc = await invoiceRef.get();
       if (!invoiceDoc.exists) {
-        throw new Error("Invoice no encontrado");
+        throw new Error("Invoice not found");
       }
       if (invoiceDoc.data().userId !== state.user.uid) {
-        throw new Error("No tienes permisos para modificar este invoice");
+        throw new Error("You don't have permission to modify this invoice");
       }
       await invoiceRef.update({
         invoicePaid: true,
@@ -217,15 +217,15 @@ export default createStore({
     },
     async UPDATE_STATUS_TO_PENDING({ commit, state }, docId) {
       if (!state.user || !state.user.uid) {
-        throw new Error("Usuario no autenticado");
+        throw new Error("User not authenticated");
       }
       const invoiceRef = db.collection("invoices").doc(docId);
       const invoiceDoc = await invoiceRef.get();
       if (!invoiceDoc.exists) {
-        throw new Error("Invoice no encontrado");
+        throw new Error("Invoice not found");
       }
       if (invoiceDoc.data().userId !== state.user.uid) {
-        throw new Error("No tienes permisos para modificar este invoice");
+        throw new Error("You don't have permission to modify this invoice");
       }
       await invoiceRef.update({
         invoicePaid: false,

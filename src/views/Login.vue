@@ -6,7 +6,7 @@
         <h1>Invoice App</h1>
       </div>
       <div class="login-form flex flex-column">
-        <h2>Iniciar Sesión</h2>
+        <h2>Sign In</h2>
         <div v-if="errorMessage" class="error-message">
           {{ errorMessage }}
         </div>
@@ -16,12 +16,12 @@
             type="email"
             id="email"
             v-model="email"
-            placeholder="tu@email.com"
+            placeholder="your@email.com"
             required
           />
         </div>
         <div class="input-group flex flex-column">
-          <label for="password">Contraseña</label>
+          <label for="password">Password</label>
           <input
             type="password"
             id="password"
@@ -31,46 +31,46 @@
           />
         </div>
         <button @click="signInWithEmail" class="purple" :disabled="loading">
-          {{ loading ? "Cargando..." : "Iniciar Sesión con Email" }}
+          {{ loading ? "Loading..." : "Sign In with Email" }}
         </button>
         <div class="divider flex">
-          <span>o</span>
+          <span>or</span>
         </div>
         <button @click="signInWithGoogle" class="dark-purple" :disabled="loading">
-          Iniciar Sesión con Google
+          Sign In with Google
         </button>
         <button @click="signInAnonymously" class="orange" :disabled="loading">
-          Continuar como Anónimo
+          Continue as Anonymous
         </button>
         <div class="register-link">
-          <p>¿No tienes cuenta? <a @click="showRegister = true">Regístrate aquí</a></p>
+          <p>Don't have an account? <a @click="showRegister = true">Sign up here</a></p>
         </div>
         <div v-if="showRegister" class="register-section flex flex-column">
-          <h3>Crear Cuenta</h3>
+          <h3>Create Account</h3>
           <div class="input-group flex flex-column">
             <label for="registerEmail">Email</label>
             <input
               type="email"
               id="registerEmail"
               v-model="registerEmail"
-              placeholder="tu@email.com"
+              placeholder="your@email.com"
               required
             />
           </div>
           <div class="input-group flex flex-column">
-            <label for="registerPassword">Contraseña</label>
+            <label for="registerPassword">Password</label>
             <input
               type="password"
               id="registerPassword"
               v-model="registerPassword"
-              placeholder="Mínimo 6 caracteres"
+              placeholder="Minimum 6 characters"
               required
             />
           </div>
           <button @click="registerWithEmail" class="green" :disabled="loading">
-            {{ loading ? "Creando cuenta..." : "Crear Cuenta" }}
+            {{ loading ? "Creating account..." : "Create Account" }}
           </button>
-          <button @click="showRegister = false" class="red">Cancelar</button>
+          <button @click="showRegister = false" class="red">Cancel</button>
         </div>
       </div>
     </div>
@@ -97,7 +97,7 @@ export default {
     ...mapActions(["SIGN_IN_EMAIL", "SIGN_IN_GOOGLE", "SIGN_IN_ANONYMOUS", "REGISTER_EMAIL", "GET_INVOICES"]),
     async signInWithEmail() {
       if (!this.email || !this.password) {
-        this.errorMessage = "Por favor completa todos los campos";
+        this.errorMessage = "Please fill in all fields";
         return;
       }
       this.loading = true;
@@ -107,7 +107,7 @@ export default {
         await this.GET_INVOICES();
         this.$router.push("/");
       } catch (error) {
-        this.errorMessage = error.message || "Error al iniciar sesión";
+        this.errorMessage = error.message || "Error signing in";
       } finally {
         this.loading = false;
       }
@@ -120,7 +120,7 @@ export default {
         await this.GET_INVOICES();
         this.$router.push("/");
       } catch (error) {
-        this.errorMessage = error.message || "Error al iniciar sesión con Google";
+        this.errorMessage = error.message || "Error signing in with Google";
       } finally {
         this.loading = false;
       }
@@ -133,18 +133,18 @@ export default {
         await this.GET_INVOICES();
         this.$router.push("/");
       } catch (error) {
-        this.errorMessage = error.message || "Error al iniciar sesión anónima";
+        this.errorMessage = error.message || "Error signing in anonymously";
       } finally {
         this.loading = false;
       }
     },
     async registerWithEmail() {
       if (!this.registerEmail || !this.registerPassword) {
-        this.errorMessage = "Por favor completa todos los campos";
+        this.errorMessage = "Please fill in all fields";
         return;
       }
       if (this.registerPassword.length < 6) {
-        this.errorMessage = "La contraseña debe tener al menos 6 caracteres";
+        this.errorMessage = "Password must be at least 6 characters";
         return;
       }
       this.loading = true;
@@ -154,7 +154,7 @@ export default {
         await this.GET_INVOICES();
         this.$router.push("/");
       } catch (error) {
-        this.errorMessage = error.message || "Error al crear la cuenta";
+        this.errorMessage = error.message || "Error creating account";
       } finally {
         this.loading = false;
       }

@@ -4,7 +4,7 @@
       <img src="@/assets/file-invoice-dollar-solid.png" alt="" />
     </div>
     <div class="user-section flex flex-column">      
-      <button @click="signOut" class="logout-button">Cerrar Sesión</button>
+      <button @click="signOut" class="logout-button">Sign Out</button>
     </div>
   </header>
 </template>
@@ -20,7 +20,7 @@ export default {
         await this.SIGN_OUT();
         this.$router.push("/login");
       } catch (error) {
-        console.error("Error al cerrar sesión:", error);
+        console.error("Error signing out:", error);
       }
     },
   },

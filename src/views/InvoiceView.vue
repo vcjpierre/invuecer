@@ -119,7 +119,7 @@ export default {
       if (this.currentInvoice) {
         const userId = this.$store.state.user?.uid;
         if (!userId || this.currentInvoice.userId !== userId) {
-          alert("No tienes permisos para ver este invoice");
+          alert("You don't have permission to view this invoice");
           this.$router.push({ name: "Home" });
         }
       }
@@ -133,21 +133,21 @@ export default {
         await this.DELETE_INVOICE(docId);
         this.$router.push({ name: "Home" });
       } catch (error) {
-        alert(error.message || "Error al eliminar el invoice");
+        alert(error.message || "Error deleting invoice");
       }
     },
     async updateStatusToPaid(docId) {
       try {
         await this.UPDATE_STATUS_TO_PAID(docId);
       } catch (error) {
-        alert(error.message || "Error al actualizar el estado");
+        alert(error.message || "Error updating status");
       }
     },
     async updateStatusToPending(docId) {
       try {
         await this.UPDATE_STATUS_TO_PENDING(docId);
       } catch (error) {
-        alert(error.message || "Error al actualizar el estado");
+        alert(error.message || "Error updating status");
       }
     },
   },
