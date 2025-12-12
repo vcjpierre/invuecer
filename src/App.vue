@@ -1,5 +1,9 @@
 <template>
-  <div v-if="invoicesLoaded">
+  <div v-if="authLoading" class="loading-container flex flex-column">
+    <div class="loading-spinner"></div>
+    <p>Cargando...</p>
+  </div>
+  <div v-else-if="userLoggedIn && invoicesLoaded">
     <div v-if="!mobile" class="app flex flex-column">
       <Navigation />
       <div class="app-content flex flex-column">
@@ -15,6 +19,9 @@
       <p>To use this app, please use a computer or Tablet</p>
     </div>
   </div>
+  <div v-else>
+    <router-view />
+  </div>
 </template>
 
 <script>
@@ -26,6 +33,7 @@ export default {
   data() {
     return {
       mobile: null,
+      authLoading: true,
     };
   },
   components: {
@@ -33,13 +41,24 @@ export default {
     InvoiceModal,
     Modal,
   },
-  created() {
-    this.GET_INVOICES();
+  async created() {
+    await this.GET_USER();
     this.checkScreen();
     window.addEventListener("resize", this.checkScreen);
+    if (this.userLoggedIn) {
+      await this.GET_INVOICES();
+    }
+    this.authLoading = false;
+  },
+  watch: {
+    async userLoggedIn(newValue) {
+      if (newValue && !this.invoicesLoaded) {
+        await this.GET_INVOICES();
+      }
+    },
   },
   methods: {
-    ...mapActions(["GET_INVOICES"]),
+    ...mapActions(["GET_INVOICES", "GET_USER"]),
     checkScreen() {
       const windowWidth = window.innerWidth;
       if (windowWidth <= 750) {
@@ -50,7 +69,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(["invoiceModal", "modalActive", "invoicesLoaded"]),
+    ...mapState(["invoiceModal", "modalActive", "invoicesLoaded", "userLoggedIn"]),
   },
 };
 </script>
@@ -203,5 +222,33 @@ button,
 
 .draft::before {
   background-color: #dfe3fa;
+}
+
+.loading-container {
+  min-height: 100vh;
+  background-color: #141625;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #252945;
+  border-top: 4px solid #7c5dfa;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+  font-size: 14px;
+  color: #dfe3fa;
 }
 </style>

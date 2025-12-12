@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="header flex">
       <div class="left flex flex-column">
-        <h1>Invoices</h1>
+        <h1>Invoices from {{ userEmail || "Usuario" }}</h1>
         <span>There are {{ invoiceData.length }} total invoices</span>
       </div>
       <div class="right flex">
@@ -70,7 +70,10 @@ export default {
     },
   },
   computed: {
-    ...mapState(["invoiceData"]),
+    ...mapState(["invoiceData", "user"]),
+    userEmail() {
+      return this.user?.email || this.user?.displayName || "Usuario";
+    },
     filteredData() {
       return this.invoiceData.filter((invoice) => {
         if (this.filteredInvoice === "Draft") {

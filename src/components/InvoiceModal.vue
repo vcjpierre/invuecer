@@ -235,9 +235,16 @@ export default {
       }
       this.loading = true;
       this.calInvoiceTotal();
+      const userId = this.$store.state.user?.uid;
+      if (!userId) {
+        alert("Debes estar autenticado para crear invoices");
+        this.loading = false;
+        return;
+      }
       const dataBase = db.collection("invoices").doc();
       await dataBase.set({
         invoiceId: uid(6),
+        userId: userId,
         billerStreetAddress: this.billerStreetAddress,
         billerCity: this.billerCity,
         billerZipCode: this.billerZipCode,
@@ -269,10 +276,24 @@ export default {
         alert("Please ensure you filled out work items!");
         return;
       }
+      const userId = this.$store.state.user?.uid;
+      if (!userId) {
+        alert("Debes estar autenticado para actualizar invoices");
+        return;
+      }
+      const invoiceRef = db.collection("invoices").doc(this.docId);
+      const invoiceDoc = await invoiceRef.get();
+      if (!invoiceDoc.exists) {
+        alert("Invoice no encontrado");
+        return;
+      }
+      if (invoiceDoc.data().userId !== userId) {
+        alert("No tienes permisos para editar este invoice");
+        return;
+      }
       this.loading = true;
       this.calInvoiceTotal();
-      const dataBase = db.collection("invoices").doc(this.docId);
-      await dataBase.update({
+      await invoiceRef.update({
         billerStreetAddress: this.billerStreetAddress,
         billerCity: this.billerCity,
         billerZipCode: this.billerZipCode,
@@ -293,7 +314,7 @@ export default {
       this.loading = false;
       const data = {
         docId: this.docId,
-        routeId: this.$route.params.invoiceId,
+        routeId: this.$route.params.invoiceId || this.currentInvoiceArray[0]?.invoiceId,
       };
       this.UPDATE_INVOICE(data);
     },

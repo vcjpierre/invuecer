@@ -116,24 +116,43 @@ export default {
     getCurrentInvoice() {
       this.SET_CURRENT_INVOICE(this.$route.params.invoiceId);
       this.currentInvoice = this.currentInvoiceArray[0];
+      if (this.currentInvoice) {
+        const userId = this.$store.state.user?.uid;
+        if (!userId || this.currentInvoice.userId !== userId) {
+          alert("No tienes permisos para ver este invoice");
+          this.$router.push({ name: "Home" });
+        }
+      }
     },
     toggleEditInvoice() {
       this.TOGGLE_EDIT_INVOICE();
       this.TOGGLE_INVOICE();
     },
     async deleteInvoice(docId) {
-      await this.DELETE_INVOICE(docId);
-      this.$router.push({ name: "Home" });
+      try {
+        await this.DELETE_INVOICE(docId);
+        this.$router.push({ name: "Home" });
+      } catch (error) {
+        alert(error.message || "Error al eliminar el invoice");
+      }
     },
-    updateStatusToPaid(docId) {
-      this.UPDATE_STATUS_TO_PAID(docId);
+    async updateStatusToPaid(docId) {
+      try {
+        await this.UPDATE_STATUS_TO_PAID(docId);
+      } catch (error) {
+        alert(error.message || "Error al actualizar el estado");
+      }
     },
-    updateStatusToPending(docId) {
-      this.UPDATE_STATUS_TO_PENDING(docId);
+    async updateStatusToPending(docId) {
+      try {
+        await this.UPDATE_STATUS_TO_PENDING(docId);
+      } catch (error) {
+        alert(error.message || "Error al actualizar el estado");
+      }
     },
   },
   computed: {
-    ...mapState(["currentInvoiceArray", "editInvoice"]),
+    ...mapState(["currentInvoiceArray", "editInvoice", "user"]),
   },
   watch: {
     editInvoice() {
